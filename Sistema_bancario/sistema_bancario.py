@@ -12,23 +12,24 @@ limite = 500
 extrato = ""
 numero_saques = 0
 LIMITE_SAQUES = 3
+invalido = "O valor informado é inválido! Use apenas números e o ponto decimal."
 
 while True:
 
     opcao = input(menu).lower()
 
     if opcao == "d":
-        valor = float(input("Informe o valor do depósito: "))
+        valor = float(input("Quanto você quer depositar? "))
 
         if valor > 0:
             saldo += valor
             extrato += f"Depósito: R$ {valor:.2f}\n"
 
         else:
-            print("Operação falhou! O valor informado é inválido.")
+            print(invalido)
 
     elif opcao == "s":
-        valor = float(input("Informe o valor do saque: "))
+        valor = float(input("Quanto você quer sacar? "))
 
         excedeu_saldo = valor > saldo
 
@@ -37,13 +38,13 @@ while True:
         excedeu_saques = numero_saques >= LIMITE_SAQUES
 
         if excedeu_saldo:
-            print("Operação falhou! Você não tem saldo suficiente.")
+            print(f"Seu saldo de R$ {saldo:.2f} não é suficiente para este saque.")
 
         elif excedeu_limite:
-            print("Operação falhou! O valor do saque excede o limite.")
+            print(f"O valor do saque excede seu limite de R$ {limite:.2f}.")
 
         elif excedeu_saques:
-            print("Operação falhou! Número máximo de saques excedido.")
+            print(f"Você atingiu seu limite de {LIMITE_SAQUES} saques diários.")
 
         elif valor > 0:
             saldo -= valor
@@ -51,7 +52,7 @@ while True:
             numero_saques += 1
 
         else:
-            print("Operação falhou! O valor informado é inválido.")
+            print(invalido)
 
     elif opcao == "e":
         print("\n================ EXTRATO ================")
