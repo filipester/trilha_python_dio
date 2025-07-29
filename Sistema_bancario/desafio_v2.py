@@ -92,7 +92,14 @@ def criar_conta(agencia, numero_conta, usuarios):
     print("\nUsuário não encontrado, não foi possível criar a conta.")
 
 def listar_contas(contas):
-    pass
+    for conta in contas:
+        linha = f"""\
+        Agência:\t{conta['agencia']}
+        C/C:\t\t{conta['numero_conta']}
+        Titular:\t{conta['usuario']['nome']}
+        """
+        print("=" * 50)
+        print(textwrap.dedent(linha))
 
 def main():
     LIMITE_SAQUES = 3
