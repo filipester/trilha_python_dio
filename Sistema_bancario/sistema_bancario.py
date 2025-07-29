@@ -1,3 +1,6 @@
+from datetime import datetime
+
+
 menu = """
 
 [d] Depositar
