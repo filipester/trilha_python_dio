@@ -33,6 +33,8 @@ def sacar(*, saldo, valor, extrato, limite, numero_saques, limite_saques):
     excedeu_limite = valor > limite
     excedeu_saques = numero_saques >= limite_saques
 
+    
+
     if excedeu_saldo:
         print("\nSaldo insuficiente para esta operação.")
     
@@ -46,8 +48,7 @@ def sacar(*, saldo, valor, extrato, limite, numero_saques, limite_saques):
         saldo -= valor
         extrato += f"Saque:\t\t R$ {valor:.2f}\n"
         numero_saques += 1
-        print("\n=== Saque realizado com sucesso! ===")
-        # print(f"Numero de saques: {numero_saques}") 
+        print("\n=== Saque realizado com sucesso! ===") 
 
     else:
         print("Por favor, digite um valor válido.")
@@ -116,7 +117,11 @@ def main():
 
         opcao = menu()
 
-        if opcao == "d":
+        if not ['d', 's', 'e', 'nu', 'nc', 'lc', 'x'].count(opcao):
+            print("Operação inválida, por favor selecione novamente a operação desejada.")
+            continue
+
+        elif opcao == "d":
             valor = float(input("Quanto você quer depositar? "))
 
             saldo, extrato = depositar(saldo, valor, extrato)
@@ -153,8 +158,7 @@ def main():
         elif opcao == "x":
             break
 
-        else:
-            print("Operação inválida, por favor selecione novamente a operação desejada.")
+
 
 
 
